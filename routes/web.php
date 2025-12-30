@@ -27,6 +27,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    
+    // User management
+    Route::get('/users', [\App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [\App\Http\Controllers\Admin\UsersController::class, 'create'])->name('users.create');
+    Route::post('/users', [\App\Http\Controllers\Admin\UsersController::class, 'store'])->name('users.store');
+    Route::post('/users/{user}/promote', [\App\Http\Controllers\Admin\UsersController::class, 'promote'])->name('users.promote');
+    Route::post('/users/{user}/demote', [\App\Http\Controllers\Admin\UsersController::class, 'demote'])->name('users.demote');
 });
 
 require __DIR__.'/auth.php';
