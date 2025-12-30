@@ -23,14 +23,14 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <a href="{{ route('dashboard') }}" class="text-xl font-bold text-white">
+                                <a href="{{ route('admin.dashboard') }}" class="text-xl font-bold text-white">
                                     Admin Panel
                                 </a>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('dashboard') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.dashboard') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
                                     Dashboard
                                 </a>
                             </div>
