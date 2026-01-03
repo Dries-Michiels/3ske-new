@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\NewsController;
@@ -14,6 +15,7 @@ Route::get('/shows', [ShowController::class, 'index'])->name('shows.index');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/users/{name}', [UserProfileController::class, 'show'])->name('users.show');
 
 // Authenticated user routes
 Route::middleware('auth')->group(function () {
