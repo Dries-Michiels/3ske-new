@@ -13,9 +13,26 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+
+        <!-- Avatar -->
+        <div>
+            <x-input-label for="avatar" :value="__('Profile Picture')" />
+            <div class="mt-2 flex items-center space-x-4">
+                @if($user->avatar_path)
+                    <img src="{{ asset('storage/' . $user->avatar_path) }}" alt="Avatar" class="w-20 h-20 rounded-full object-cover">
+                @else
+                    <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-2xl font-bold">
+                        {{ strtoupper(substr($user->name, 0, 1)) }}
+                    </div>
+                @endif
+                <input type="file" id="avatar" name="avatar" accept="image/*" class="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+            </div>
+            <p class="mt-1 text-sm text-gray-500">Max 2MB, JPG/PNG</p>
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -47,8 +64,27 @@
             @endif
         </div>
 
+        <!-- Birthday -->
+        <div>
+            <x-input-label for="birthday" :value="__('Birthday')" />
+            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" :value="old('birthday', $user->birthday)" />
+            <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
+        </div>
+
+        <!-- Bio -->
+        <div>
+            <x-input-label for="bio" :value="__('Bio')" />
+            <textarea id="bio" name="bio" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('bio', $user->bio) }}</textarea>
+            <p class="mt-1 text-sm text-gray-500">Tell us a bit about yourself (max 1000 characters)</p>
+            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
+            
+            <a href="{{ route('users.show', $user->name) }}" class="text-sm text-gray-600 hover:text-gray-900">
+                View Public Profile
+            </a>
 
             @if (session('status') === 'profile-updated')
                 <p
