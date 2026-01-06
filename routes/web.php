@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shows', [ShowController::class, 'index'])->name('shows.index');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/users/{name}', [UserProfileController::class, 'show'])->name('users.show');
@@ -36,6 +37,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/users', [\App\Http\Controllers\Admin\UsersController::class, 'store'])->name('users.store');
     Route::post('/users/{user}/promote', [\App\Http\Controllers\Admin\UsersController::class, 'promote'])->name('users.promote');
     Route::post('/users/{user}/demote', [\App\Http\Controllers\Admin\UsersController::class, 'demote'])->name('users.demote');
+    
+    // News management
+    Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
 });
 
 require __DIR__.'/auth.php';
