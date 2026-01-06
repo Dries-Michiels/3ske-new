@@ -36,6 +36,9 @@
                                 <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.users.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
                                     Users
                                 </a>
+                                <a href="{{ route('admin.news.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.news.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                    News
+                                </a>
                             </div>
                         </div>
 
