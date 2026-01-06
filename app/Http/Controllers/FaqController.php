@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\FaqCategory;
+use Illuminate\View\View;
 
 class FaqController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        return view('faq');
+        $categories = FaqCategory::with('faqItems')->orderBy('name')->get();
+        
+        return view('faq', compact('categories'));
     }
 }
