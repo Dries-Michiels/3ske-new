@@ -1,0 +1,70 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-3xl font-bold">FAQ Items</h2>
+                            <p class="text-gray-600 mt-1">Manage individual FAQ questions and answers</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="{{ route('admin.faq-categories.index') }}" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-200 flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                                <span>Manage Categories</span>
+                            </a>
+                            <a href="{{ route('admin.faq-items.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition duration-200 flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <span>Create FAQ Item</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    @if(session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach($faqItems as $item)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">
+                                                {{ $item->faqCategory->name }}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4">{{ $item->question }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                            <a href="{{ route('admin.faq-items.edit', $item) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('admin.faq-items.destroy', $item) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

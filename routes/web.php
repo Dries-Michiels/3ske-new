@@ -40,6 +40,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // News management
     Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    
+    // FAQ management
+    Route::resource('faq-categories', \App\Http\Controllers\Admin\FaqCategoriesController::class);
+    Route::resource('faq-items', \App\Http\Controllers\Admin\FaqItemsController::class);
 });
 
 require __DIR__.'/auth.php';
