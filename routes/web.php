@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shows', [ShowController::class, 'index'])->name('shows.index');
+Route::get('/shows/{slug}', [ShowController::class, 'show'])->name('shows.show');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
@@ -40,6 +41,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // News management
     Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
+    
+    // Events management
+    Route::resource('events', \App\Http\Controllers\Admin\EventsController::class);
     
     // FAQ management
     Route::resource('faq-categories', \App\Http\Controllers\Admin\FaqCategoriesController::class);
