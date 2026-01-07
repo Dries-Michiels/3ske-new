@@ -32,6 +32,20 @@
                 </div>
             </div>
 
+            <!-- Tags -->
+            @if($event->tags->count() > 0)
+                <div class="mb-6">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-2">Tags</h3>
+                    <div class="flex flex-wrap gap-2">
+                        @foreach($event->tags as $tag)
+                            <a href="{{ route('shows.index', ['tag' => $tag->slug]) }}" class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded hover:bg-gray-200">
+                                {{ $tag->name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <!-- Event Details -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>

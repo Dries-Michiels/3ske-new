@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,9 @@ class EventsController extends Controller
 
     public function create(): View
     {
-        return view('admin.events.create');
+        $tags = Tag::orderBy('name')->get();
+        
+        return view('admin.events.create', compact('tags'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -40,14 +43,18 @@ class EventsController extends Controller
             $validated['image_path'] = $request->file('image')->store('events', 'public');
         }
 
-        Event::create($validated);
+        $event = Event::create($validated);
+        
+        $event->tags()->sync($request->input('tags', []));
 
         return redirect()->route('admin.events.index')->with('success', 'Event created successfully');
     }
 
     public function edit(Event $event): View
     {
-        return view('admin.events.edit', compact('event'));
+        $tags = Tag::orderBy('name')->get();
+        
+        return view('admin.events.edit', compact('event', 'tags'));
     }
 
     public function update(Request $request, Event $event): RedirectResponse
@@ -71,6 +78,8 @@ class EventsController extends Controller
         }
 
         $event->update($validated);
+        
+        $event->tags()->sync($request->input('tags', []));
 
         return redirect()->route('admin.events.index')->with('success', 'Event updated successfully');
     }

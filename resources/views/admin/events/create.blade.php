@@ -71,6 +71,23 @@
             </div>
 
             <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Tags (Optional)</label>
+                @if($tags->count() > 0)
+                    <div class="space-y-2">
+                        @foreach($tags as $tag)
+                            <label class="inline-flex items-center mr-4">
+                                <input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}
+                                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <span class="ml-2 text-sm text-gray-700">{{ $tag->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-sm text-gray-500">No tags available. <a href="{{ route('admin.tags.create') }}" class="text-indigo-600 hover:text-indigo-900">Create tags first</a>.</p>
+                @endif
+            </div>
+
+            <div class="mb-4">
                 <label for="image" class="block text-sm font-medium text-gray-700">Event Poster (Optional)</label>
                 <input type="file" name="image" id="image" accept="image/*"
                     class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-800 file:text-white hover:file:bg-gray-700">

@@ -4,6 +4,22 @@
 <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
     <h1 class="text-3xl font-bold text-gray-900 mb-8">Shows</h1>
     
+    <!-- Tag Filter -->
+    @if($allTags->count() > 0)
+        <div class="mb-8">
+            <div class="flex flex-wrap gap-2">
+                <a href="{{ route('shows.index') }}" class="px-4 py-2 rounded {{ !$selectedTag ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 hover:bg-gray-100' }} border border-gray-300">
+                    All
+                </a>
+                @foreach($allTags as $tag)
+                    <a href="{{ route('shows.index', ['tag' => $tag->slug]) }}" class="px-4 py-2 rounded {{ $selectedTag === $tag->slug ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 hover:bg-gray-100' }} border border-gray-300">
+                        {{ $tag->name }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
+    
     <!-- Upcoming Events -->
     <div class="mb-12">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">Upcoming Events</h2>
@@ -24,9 +40,16 @@
                             <div class="text-sm text-gray-600 mb-1">
                                 <span class="font-medium">📅</span> {{ $event->starts_at->format('M d, Y - H:i') }}@if($event->ends_at) - {{ $event->ends_at->format('H:i') }}@endif
                             </div>
-                            <div class="text-sm text-gray-600">
+                            <div class="text-sm text-gray-600 mb-2">
                                 <span class="font-medium">📍</span> {{ $event->location }}
                             </div>
+                            @if($event->tags->count() > 0)
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    @foreach($event->tags as $tag)
+                                        <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">{{ $tag->name }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                             @if($event->ticket_url)
                                 <div class="mt-3">
                                     <span class="inline-block px-3 py-1 bg-gray-800 text-white text-xs font-semibold rounded">
@@ -65,9 +88,16 @@
                             <div class="text-sm text-gray-600 mb-1">
                                 <span class="font-medium">📅</span> {{ $event->starts_at->format('M d, Y - H:i') }}@if($event->ends_at) - {{ $event->ends_at->format('H:i') }}@endif
                             </div>
-                            <div class="text-sm text-gray-600">
+                            <div class="text-sm text-gray-600 mb-2">
                                 <span class="font-medium">📍</span> {{ $event->location }}
                             </div>
+                            @if($event->tags->count() > 0)
+                                <div class="flex flex-wrap gap-1">
+                                    @foreach($event->tags as $tag)
+                                        <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">{{ $tag->name }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </a>
                 @endforeach
