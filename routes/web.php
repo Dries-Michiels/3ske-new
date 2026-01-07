@@ -45,6 +45,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Events management
     Route::resource('events', \App\Http\Controllers\Admin\EventsController::class);
     
+    // Tags management
+    Route::resource('tags', \App\Http\Controllers\Admin\TagsController::class);
+    
     // FAQ management
     Route::resource('faq-categories', \App\Http\Controllers\Admin\FaqCategoriesController::class);
     Route::resource('faq-items', \App\Http\Controllers\Admin\FaqItemsController::class);
