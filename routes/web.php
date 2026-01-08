@@ -17,6 +17,7 @@ Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/users/{name}', [UserProfileController::class, 'show'])->name('users.show');
 
 // Authenticated user routes
@@ -47,6 +48,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // Tags management
     Route::resource('tags', \App\Http\Controllers\Admin\TagsController::class);
+    
+    // Contact messages
+    Route::get('/contact-messages', [\App\Http\Controllers\Admin\ContactMessagesController::class, 'index'])->name('contact-messages.index');
+    Route::get('/contact-messages/{contactMessage}', [\App\Http\Controllers\Admin\ContactMessagesController::class, 'show'])->name('contact-messages.show');
+    Route::patch('/contact-messages/{contactMessage}/status', [\App\Http\Controllers\Admin\ContactMessagesController::class, 'updateStatus'])->name('contact-messages.update-status');
+    Route::post('/contact-messages/{contactMessage}/reply', [\App\Http\Controllers\Admin\ContactMessagesController::class, 'reply'])->name('contact-messages.reply');
     
     // FAQ management
     Route::resource('faq-categories', \App\Http\Controllers\Admin\FaqCategoriesController::class);
