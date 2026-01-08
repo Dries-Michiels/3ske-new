@@ -49,6 +49,67 @@ npm run dev
 - Admin user management
 - User profiles with avatars
 - Public profile pages
+- News management with featured posts
+- FAQ system with categories
+- Events/Shows with posters and ticket links
+- Tag system for event categorization
+- Contact form with booking requests
+- Admin inbox with reply functionality
+
+## Deployment (Dokploy)
+
+### Required Environment Variables
+
+For production deployment on Dokploy, configure these environment variables:
+
+```env
+# Application
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.com
+
+# Database (if using MySQL/PostgreSQL instead of SQLite)
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+
+# Mail Configuration
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com          # Or your mail provider
+MAIL_PORT=587
+MAIL_USERNAME=your-email@domain.com
+MAIL_PASSWORD=your-app-password   # Use App Password for Gmail
+MAIL_FROM_ADDRESS=noreply@your-domain.com
+MAIL_FROM_NAME="Your DJ Name"
+MAIL_ADMIN_EMAIL=info@your-domain.com  # Where contact form notifications are sent
+
+# Session & Cache (recommended for production)
+SESSION_DRIVER=database
+CACHE_STORE=database
+```
+
+### Post-Deployment Commands
+
+Run these commands after deploying:
+
+```bash
+php artisan migrate --force
+php artisan storage:link
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+### Mail Providers
+
+For production, you can use:
+- **Gmail**: Free, requires [App Password](https://myaccount.google.com/apppasswords)
+- **Resend**: 10,000 emails/month free
+- **Mailgun**: 5,000 emails/month free  
+- **SendGrid**: 100 emails/day free
 
 ## About Laravel
 
