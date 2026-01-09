@@ -35,4 +35,14 @@ class Event extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function favoritedBy(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
+
+    public function favoritesCount(): int
+    {
+        return $this->favoritedBy()->count();
+    }
 }

@@ -49,4 +49,28 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Check if the user is an admin.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Get the favorites (events) for this user.
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Event::class, 'favorites')->withTimestamps();
+    }
+
+    /**
+     * Check if the user has favorited a specific event.
+     */
+    public function hasFavorited(Event $event): bool
+    {
+        return $this->favorites()->where('event_id', $event->id)->exists();
+    }
 }
