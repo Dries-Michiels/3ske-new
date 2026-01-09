@@ -7,48 +7,47 @@
 
         <title>{{ config('app.name', 'Laravel') }} - Admin</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ asset('images/3ske.png') }}">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased bg-neutral-900">
+        <div class="min-h-screen">
             <!-- Admin Navigation -->
-            <nav class="bg-gray-800 border-b border-gray-700">
+            <nav class="bg-black border-b border-neutral-700">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <a href="{{ route('admin.dashboard') }}" class="text-xl font-bold text-white">
-                                    Admin Panel
+                                    3SKE Admin
                                 </a>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.dashboard') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.dashboard') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     Dashboard
                                 </a>
-                                <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.users.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.users.*') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     Users
                                 </a>
-                                <a href="{{ route('admin.news.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.news.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.news.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.news.*') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     News
                                 </a>
-                                <a href="{{ route('admin.events.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.events.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.events.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.events.*') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     Events
                                 </a>
-                                <a href="{{ route('admin.tags.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.tags.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.tags.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.tags.*') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     Tags
                                 </a>
-                                <a href="{{ route('admin.contact-messages.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.contact-messages.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.contact-messages.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.contact-messages.*') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     Inbox
                                 </a>
-                                <a href="{{ route('admin.faq-categories.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.faq-categories.*') || request()->routeIs('admin.faq-items.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-500 focus:outline-none focus:border-gray-500 transition duration-150 ease-in-out">
+                                <a href="{{ route('admin.faq-categories.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ request()->routeIs('admin.faq-categories.*') || request()->routeIs('admin.faq-items.*') ? 'border-white' : 'border-transparent' }} text-sm font-medium leading-5 text-white hover:border-gray-400 focus:outline-none focus:border-gray-400 transition duration-150 ease-in-out">
                                     FAQ
                                 </a>
                             </div>
@@ -77,7 +76,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
+                <header class="bg-neutral-800 shadow border-b border-neutral-700">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

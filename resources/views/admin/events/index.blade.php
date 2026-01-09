@@ -5,8 +5,8 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-900">Manage Events</h2>
-    <a href="{{ route('admin.events.create') }}" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700">
+    <h2 class="text-2xl font-bold text-white">Manage Events</h2>
+    <a href="{{ route('admin.events.create') }}" class="px-4 py-2 bg-black text-white rounded hover:bg-gray-700">
         Create Event
     </a>
 </div>
@@ -17,19 +17,19 @@
     </div>
 @endif
 
-<div class="bg-white shadow rounded-lg overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+<div class="bg-neutral-800 shadow rounded-lg overflow-hidden">
+    <table class="min-w-full divide-y divide-neutral-700">
+        <thead class="bg-neutral-700">
             <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Poster</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Poster</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Title</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Location</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Actions</th>
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="bg-neutral-800 divide-y divide-neutral-700">
             @forelse($events as $event)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -42,13 +42,13 @@
                         @endif
                     </td>
                     <td class="px-6 py-4">
-                        <div class="text-sm font-medium text-gray-900">{{ $event->title }}</div>
-                        <div class="text-sm text-gray-500">/{{ $event->slug }}</div>
+                        <div class="text-sm font-medium text-white">{{ $event->title }}</div>
+                        <div class="text-sm text-gray-400">/{{ $event->slug }}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
                         {{ $event->starts_at->format('M d, Y H:i') }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
                         {{ $event->location }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -73,7 +73,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-400">
                         No events found. <a href="{{ route('admin.events.create') }}" class="text-indigo-600 hover:text-indigo-900">Create your first event</a>
                     </td>
                 </tr>
