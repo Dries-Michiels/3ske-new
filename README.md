@@ -308,7 +308,7 @@ For issues or questions, please contact through the website contact form or reac
 
 ---
 
-**3SKE** - Bringing the energy to your events 🎵
+**3SKE** - Bringing the energy to your events 
 
 ## Deployment (Dokploy)
 
@@ -344,23 +344,3 @@ MAIL_ADMIN_EMAIL=info@your-domain.com  # Where contact form notifications are se
 SESSION_DRIVER=database
 CACHE_STORE=database
 ```
-
-### Post-Deployment Commands
-
-Run these commands after deploying:
-
-```bash
-php artisan migrate --force
-php artisan storage:link
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
-
-### Mail Providers
-
-For production, you can use:
-- **Gmail**: Free, requires [App Password](https://myaccount.google.com/apppasswords)
-- **Resend**: 10,000 emails/month free
-- **Mailgun**: 5,000 emails/month free  
-- **SendGrid**: 100 emails/day free
