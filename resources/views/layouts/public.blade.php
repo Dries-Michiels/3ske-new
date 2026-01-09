@@ -59,10 +59,6 @@
                         <!-- Auth Links - Absolute Right -->
                         <div class="hidden md:flex space-x-4 absolute right-4 items-center">
                             @auth
-                                @if(auth()->user()->is_admin)
-                                    <a href="{{ route('admin.dashboard') }}" class="text-sm text-gray-400 hover:text-white transition">Dashboard</a>
-                                @endif
-                                
                                 <!-- User Dropdown -->
                                 <div class="relative" x-data="{ open: false }" @click.away="open = false">
                                     <button @click="open = !open" class="flex items-center text-sm text-gray-400 hover:text-white transition focus:outline-none">
@@ -81,6 +77,9 @@
                                          x-transition:leave-end="transform opacity-0 scale-95"
                                          class="absolute right-0 mt-2 w-48 bg-neutral-800 rounded-md shadow-lg py-1 border border-neutral-700 z-50"
                                          style="display: none;">
+                                        @if(auth()->user()->isAdmin())
+                                            <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neutral-700 hover:text-white">Admin Panel</a>
+                                        @endif
                                         <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neutral-700 hover:text-white">Profile</a>
                                         <a href="{{ route('favorites.index') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neutral-700 hover:text-white">My Favorites</a>
                                         <form method="POST" action="{{ route('logout') }}">
@@ -119,8 +118,8 @@
                             
                             <!-- Auth Links Mobile -->
                             @auth
-                                @if(auth()->user()->is_admin)
-                                    <a href="{{ route('admin.dashboard') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm">Dashboard</a>
+                                @if(auth()->user()->isAdmin())
+                                    <a href="{{ route('admin.dashboard') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm">Admin Panel</a>
                                 @endif
                                 <a href="{{ route('profile.edit') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm">Profile</a>
                                 <a href="{{ route('favorites.index') }}" class="text-gray-400 hover:text-white px-3 py-2 text-sm">My Favorites</a>
