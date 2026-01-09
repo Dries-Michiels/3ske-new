@@ -79,7 +79,19 @@ DB_CONNECTION=sqlite
 # DB_PASSWORD=
 ```
 
-6. **Run migrations with seed data**
+6. **Create SQLite database file** (required for SQLite)
+```bash
+# On macOS/Linux:
+touch database/database.sqlite
+
+# On Windows (PowerShell):
+New-Item database/database.sqlite -ItemType File
+
+# Or Windows (Command Prompt):
+type nul > database\database.sqlite
+```
+
+7. **Run migrations with seed data**
 ```bash
 php artisan migrate:fresh --seed
 ```
@@ -92,12 +104,12 @@ This will create:
 - 5 news posts
 - 4 FAQ categories with 13 FAQ items
 
-7. **Create storage symlink** (for avatar and event image uploads)
+8. **Create storage symlink** (for avatar and event image uploads)
 ```bash
 php artisan storage:link
 ```
 
-8. **Build frontend assets**
+9. **Build frontend assets**
 ```bash
 npm run dev
 ```
@@ -106,7 +118,7 @@ Or for production:
 npm run build
 ```
 
-9. **Access the application**
+10. **Access the application**
 - Local: `http://3ske.test` (if using Laravel Herd)
 - Or: `php artisan serve` then visit `http://localhost:8000`
 
