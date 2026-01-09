@@ -52,6 +52,7 @@ class EventsController extends Controller
 
     public function edit(Event $event): View
     {
+        $event->load('tags'); // Eager load tags to prevent N+1 query
         $tags = Tag::orderBy('name')->get();
         
         return view('admin.events.edit', compact('event', 'tags'));
