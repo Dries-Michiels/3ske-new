@@ -46,8 +46,8 @@
             @forelse($messages as $message)
                 <tr class="{{ $message->status === 'new' ? 'bg-blue-50' : '' }}">
                     <td class="px-6 py-4">
-                        <div class="text-sm font-medium text-white">{{ $message->name }}</div>
-                        <div class="text-sm text-gray-400">{{ $message->email }}</div>
+                        <div class="text-sm font-medium {{ $message->status === 'new' ? 'text-black' : 'text-white' }}">{{ $message->name }}</div>
+                        <div class="text-sm {{ $message->status === 'new' ? 'text-gray-800' : 'text-gray-400' }}">{{ $message->email }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($message->is_booking)
@@ -61,7 +61,7 @@
                         @endif
                     </td>
                     <td class="px-6 py-4">
-                        <div class="text-sm text-white">{{ Str::limit($message->message, 50) }}</div>
+                        <div class="text-sm {{ $message->status === 'new' ? 'text-black' : 'text-white' }}">{{ Str::limit($message->message, 50) }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($message->status === 'new')
