@@ -298,18 +298,6 @@ The application uses a custom dark neutral gray theme:
 - Custom components and styling throughout
 - GitHub Copilot - AI assistant for code suggestions and debugging
 
-## License
-
-This project is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
-
-## Support
-
-For issues or questions, please contact through the website contact form or reach out to the admin directly.
-
----
-
-**3SKE** - Bringing the energy to your events 
-
 ## Deployment (Dokploy)
 
 ### Required Environment Variables
